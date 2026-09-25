@@ -1,34 +1,329 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>العقار</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b2d47" />
+  <title>ذال العقارية | القطعة 236</title>
+
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #fff;
-      width: 100%;
-      height: 100%;
+    :root {
+      --navy: #0b2d47;
+      --navy-2: #123b5f;
+      --gold: #c8a25a;
+      --gold-soft: #efe4cb;
+      --text: #22313f;
+      --muted: #66717b;
+      --bg: #f6f3ed;
+      --card: #ffffff;
+      --line: rgba(11, 45, 71, 0.08);
+      --shadow: 0 10px 35px rgba(11, 45, 71, 0.10);
+      --green: #1fc94e;
+      --green-2: #10b83f;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(200,162,90,0.14), transparent 24%),
+        radial-gradient(circle at top left, rgba(11,45,71,0.05), transparent 20%),
+        var(--bg);
+      min-height: 100vh;
+      padding-bottom: 110px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 18px 14px 0;
+    }
+
+    .hero {
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.92));
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 28px;
+      padding: 26px 18px 18px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 110px;
+      height: 100%;
+      opacity: 0.06;
+      background:
+        linear-gradient(135deg, transparent 30%, var(--navy) 30%, var(--navy) 34%, transparent 34%);
+      pointer-events: none;
+    }
+
+    .hero::before {
+      left: -25px;
+    }
+
+    .hero::after {
+      right: -25px;
+      transform: scaleX(-1);
+    }
+
+    .logo {
+      width: 150px;
+      max-width: 60%;
+      height: auto;
+      display: block;
+      margin: 0 auto 16px;
+    }
+
+    .top-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 26px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #f6efde, #efe2c0);
+      color: #8a6a2f;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      border: 1px solid rgba(200,162,90,0.25);
+    }
+
+    .title {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(34px, 7vw, 58px);
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .title .num {
+      color: var(--gold);
+      margin-inline-start: 6px;
+    }
+
+    .subtitle {
+      margin: 14px 0 0;
+      color: #5d6670;
+      font-size: clamp(17px, 3.5vw, 22px);
+      line-height: 1.8;
+    }
+
+    .map-card {
+      margin-top: 18px;
+      background: var(--card);
+      border-radius: 24px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .map-card img {
+      width: 100%;
+      display: block;
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+      margin-bottom: 10px;
+    }
+
+    .stat {
+      background: var(--card);
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding: 18px 16px 16px;
+      text-align: center;
+    }
+
+    .stat .icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      margin: 0 auto 10px;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: #f3ecdc;
+      color: var(--gold);
+      font-size: 34px;
+      font-weight: 700;
     }
 
-    img {
-      max-width: 100%;
-      max-height: 100vh;
-      object-fit: contain;
+    .stat .label {
       display: block;
+      color: #6a727a;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .stat .value {
+      color: var(--navy);
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .stat .unit {
+      color: #6a727a;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .actions {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: min(100%, 620px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
+      background: rgba(7, 30, 48, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top-left-radius: 22px;
+      border-top-right-radius: 22px;
+      box-shadow: 0 -8px 28px rgba(0,0,0,0.14);
+      z-index: 999;
+    }
+
+    .btn {
+      min-height: 62px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 19px;
+      font-weight: 800;
+      transition: transform .15s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+      flex: 0 0 auto;
+    }
+
+    .btn.whatsapp {
+      background: linear-gradient(180deg, var(--green), var(--green-2));
+    }
+
+    .btn.call {
+      background: linear-gradient(180deg, #123e67, #0b2d47);
+    }
+
+    @media (max-width: 420px) {
+      .title {
+        font-size: 30px;
+      }
+
+      .subtitle {
+        font-size: 16px;
+      }
+
+      .stat .value {
+        font-size: 24px;
+      }
+
+      .btn {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
 <body>
-  <img src="photo.jpg.png" alt="العقار">
-  <!-- refresh pages -->
+
+  <main class="page">
+
+    <section class="hero">
+      <img src="logo.png" alt="ذال العقارية" class="logo" />
+
+      <div class="top-tag">للاستثمار</div>
+
+      <h1 class="title">
+        القطعة رقم <span class="num">236</span>
+      </h1>
+
+      <p class="subtitle">
+        تفاصيل القطعة موضحة في المخطط أدناه
+      </p>
+
+      <div class="map-card">
+        <img src="photo.jpg.png" alt="مخطط القطعة 236" />
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="icon">#</div>
+          <span class="label">رقم القطعة</span>
+          <div class="value">236</div>
+        </div>
+
+        <div class="stat">
+          <div class="icon">□</div>
+          <span class="label">المساحة</span>
+          <div class="value">1125.01</div>
+          <div class="unit">م²</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <nav class="actions">
+    <a
+      class="btn whatsapp"
+      href="https://wa.me/966599340676?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D9%82%D8%B7%D8%B9%D8%A9%20%D8%B1%D9%82%D9%85%20236"
+      target="_blank"
+      rel="noopener"
+      aria-label="واتساب"
+    >
+      <svg viewBox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.149-.173.198-.297.297-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.877 1.213 3.075c.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.693.625.711.226 1.359.194 1.871.118.571-.085 1.758-.719 2.006-1.414.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.004 2.003a9.94 9.94 0 0 0-8.59 15.03L2 22l5.117-1.341A9.942 9.942 0 1 0 12.004 2.003zm0 18.086a8.08 8.08 0 0 1-4.118-1.126l-.295-.175-3.037.796.81-2.962-.192-.304a8.083 8.083 0 1 1 6.832 3.771z"/>
+      </svg>
+      <span>واتساب</span>
+    </a>
+
+    <a
+      class="btn call"
+      href="tel:+966590590775"
+      aria-label="اتصال"
+    >
+      <svg viewBox="0 0 24 24">
+        <path d="M6.62 10.79a15.054 15.054 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 4a1 1 0 0 1 1-1h3.49a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
+      </svg>
+      <span>اتصال</span>
+    </a>
+  </nav>
+
 </body>
 </html>
